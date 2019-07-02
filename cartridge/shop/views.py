@@ -5,7 +5,10 @@ from json import dumps
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.messages import info
-from django.core.urlresolvers import reverse
+# Django 1.11
+# from django.core.urlresolvers import reverse
+# Django 2.2
+from django.urls import reverse
 from django.db.models import Sum
 from django.http import Http404, HttpResponse
 from django.shortcuts import get_object_or_404, redirect
