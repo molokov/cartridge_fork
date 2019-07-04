@@ -148,7 +148,7 @@ class Product(BaseProduct, Priced, RichText, ContentTyped, AdminThumbMixin):
     #     return ("shop_product", (), {"slug": self.slug})
     # Django 2.2
     def get_absolute_url(self):
-        return reverse("shop_product", args=(self.slug,))
+        return reverse("shop_product", kwargs={"slug": self.slug})
 
     def copy_default_variation(self):
         """

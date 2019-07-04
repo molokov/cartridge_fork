@@ -7,9 +7,9 @@ from operator import mul
 from functools import reduce
 from unittest import skipUnless
 
-from django.core.urlresolvers import reverse
 from django.test import TestCase
 from django.test.client import RequestFactory
+from django.urls import reverse
 from django.utils.timezone import now
 from django.utils.translation import ugettext_lazy as _
 from mezzanine.conf import settings

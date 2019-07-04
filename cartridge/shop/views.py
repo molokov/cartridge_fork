@@ -7,14 +7,14 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.messages import info
 # Django 1.11
 # from django.core.urlresolvers import reverse
-# Django 2.2
-from django.urls import reverse
 from django.db.models import Sum
 from django.http import Http404, HttpResponse
 from django.shortcuts import get_object_or_404, redirect
 from django.template.defaultfilters import slugify
 from django.template.loader import get_template
 from django.template.response import TemplateResponse
+# Django 2.2
+from django.urls import reverse
 from django.utils.translation import ugettext as _
 from django.views.decorators.cache import never_cache
 from mezzanine.conf import settings
@@ -221,7 +221,8 @@ def checkout_steps(request, form_class=OrderForm, extra_context=None):
     # Do the authentication check here rather than using standard
     # login_required decorator. This means we can check for a custom
     # LOGIN_URL and fall back to our own login view.
-    authenticated = request.user.is_authenticated()
+    # Django 2.2 - is_authenticated is now a property, not a method
+    authenticated = request.user.is_authenticated
     if settings.SHOP_CHECKOUT_ACCOUNT_REQUIRED and not authenticated:
         url = "%s?next=%s" % (settings.LOGIN_URL, reverse("shop_checkout"))
         return redirect(url)
